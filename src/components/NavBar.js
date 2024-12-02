@@ -1,10 +1,19 @@
-import React, { useState } from "react";
-import { FaSearch, FaRegHeart, FaBars, FaTimes } from "react-icons/fa";
+import React, { useContext, useState } from "react";
+import {
+  FaSearch,
+  FaRegHeart,
+  FaBars,
+  FaTimes,
+  FaUserCircle,
+} from "react-icons/fa";
 import { HiOutlineShoppingCart } from "react-icons/hi";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+import { FirebaseContext } from "../context/FirebaseProvider";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { currentUser } = useContext(FirebaseContext);
+  const navigate = useNavigate();
 
   return (
     <>
@@ -58,6 +67,16 @@ const Navbar = () => {
               className="text-gray-700 hover:text-green-500 cursor-pointer"
               size={20}
             />
+
+            {/* Account Icon */}
+
+            {currentUser && (
+              <FaUserCircle
+                onClick={() => navigate("/account")}
+                className="text-gray-700 hover:text-green-500 cursor-pointer"
+                size={20}
+              />
+            )}
           </div>
         </div>
 
