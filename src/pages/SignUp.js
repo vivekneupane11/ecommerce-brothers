@@ -15,10 +15,7 @@ const SignUp = () => {
     e.preventDefault();
     try {
       await signup(email, password);
-      alert(
-        "Account created! Please check your email for a confirmation link."
-      );
-
+      alert("Account created!");
       navigate("/login");
     } catch (error) {
       console.error("Error signing up:", error);

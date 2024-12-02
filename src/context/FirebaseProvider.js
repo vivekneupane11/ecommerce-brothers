@@ -1,8 +1,6 @@
 import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
-  onAuthStateChanged,
-  sendEmailVerification,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
@@ -17,13 +15,12 @@ export const FirebaseProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   const signup = async (email, password) => {
-    const userCredential = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
-    await sendEmailVerification(userCredential.user);
-    return userCredential;
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+    } catch (error) {
+      console.error("Error signing up:", error);
+      throw error;
+    }
   };
 
   const login = async (email, password) => {
@@ -33,15 +30,8 @@ export const FirebaseProvider = ({ children }) => {
         email,
         password
       );
-      const user = userCredential.user;
 
-      // Check if the email is verified
-      if (!user.emailVerified) {
-        alert("Please verify your email before logging in.");
-        await signOut(auth); // Optional: log the user out if they try to log in before verification
-        return;
-      }
-
+      setCurrentUser(userCredential.user);
       return userCredential;
     } catch (error) {
       console.error("Error logging in:", error);
@@ -49,18 +39,31 @@ export const FirebaseProvider = ({ children }) => {
     }
   };
 
-  const logout = () => signOut(auth);
-  const signInWithGoogle = () => {
-    const provider = new GoogleAuthProvider();
-    return signInWithPopup(auth, provider);
+  const logout = async () => {
+    try {
+      await signOut(auth);
+      setCurrentUser(null);
+    } catch (error) {
+      console.error("Error logging out:", error);
+      throw error;
+    }
+  };
+
+  const signInWithGoogle = async () => {
+    try {
+      const provider = new GoogleAuthProvider();
+      const userCredential = await signInWithPopup(auth, provider);
+
+      setCurrentUser(userCredential.user);
+      return userCredential;
+    } catch (error) {
+      console.error("Error with Google sign-in:", error);
+      throw error;
+    }
   };
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setCurrentUser(user);
-      setLoading(false);
-    });
-    return unsubscribe;
+    setLoading(false);
   }, []);
 
   const value = {
@@ -69,11 +72,12 @@ export const FirebaseProvider = ({ children }) => {
     login,
     logout,
     signInWithGoogle,
+    loading,
   };
 
   return (
     <FirebaseContext.Provider value={value}>
-      {!loading && children}
+      {children}
     </FirebaseContext.Provider>
   );
 };

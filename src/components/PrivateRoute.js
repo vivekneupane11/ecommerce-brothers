@@ -9,7 +9,7 @@ const PrivateRoute = ({ children }) => {
     return <div>Loading...</div>;
   }
 
-  if (!currentUser || !currentUser.emailVerified) {
+  if (!currentUser) {
     return (
       <div className="h-[89vh] flex items-center justify-center bg-gray-100 px-4 sm:px-6 md:px-8">
         <div className="bg-white p-8 rounded-lg shadow-md max-w-md w-full sm:w-96">

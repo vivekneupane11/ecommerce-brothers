@@ -17,7 +17,7 @@ const Account = () => {
       <h2 className="text-2xl font-bold">My Account</h2>
       <div className="mt-4">
         <p>
-          <strong>Name:</strong> {currentUser.displayName || "N/A"}
+          <strong>Name:</strong> {currentUser?.displayName || "guest"}
         </p>
         <p>
           <strong>Email:</strong> {currentUser.email}
