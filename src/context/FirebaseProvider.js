@@ -2,6 +2,7 @@ import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
   onAuthStateChanged,
+  sendEmailVerification,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
@@ -15,11 +16,38 @@ export const FirebaseProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const signup = (email, password) =>
-    createUserWithEmailAndPassword(auth, email, password);
+  const signup = async (email, password) => {
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    await sendEmailVerification(userCredential.user);
+    return userCredential;
+  };
 
-  const login = (email, password) =>
-    signInWithEmailAndPassword(auth, email, password);
+  const login = async (email, password) => {
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
+
+      // Check if the email is verified
+      if (!user.emailVerified) {
+        alert("Please verify your email before logging in.");
+        await signOut(auth); // Optional: log the user out if they try to log in before verification
+        return;
+      }
+
+      return userCredential;
+    } catch (error) {
+      console.error("Error logging in:", error);
+      throw error;
+    }
+  };
 
   const logout = () => signOut(auth);
   const signInWithGoogle = () => {

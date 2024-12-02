@@ -3,6 +3,7 @@ import phoneimage from "../assets/signup.jpg";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router";
 import { FirebaseContext } from "../context/FirebaseProvider";
+
 const SignUp = () => {
   const { signup, signInWithGoogle } = useContext(FirebaseContext);
   const [email, setEmail] = useState("");
@@ -14,6 +15,10 @@ const SignUp = () => {
     e.preventDefault();
     try {
       await signup(email, password);
+      alert(
+        "Account created! Please check your email for a confirmation link."
+      );
+
       navigate("/login");
     } catch (error) {
       console.error("Error signing up:", error);

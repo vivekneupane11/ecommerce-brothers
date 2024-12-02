@@ -25,7 +25,7 @@ const Navbar = () => {
 
           {/* Desktop Navigation Links */}
           <ul className="hidden md:flex space-x-6 text-sm font-medium">
-            <Link to="/" className="hover:underline cursor-pointer">
+            <Link to="/home" className="hover:underline cursor-pointer">
               Home
             </Link>
             <Link to="/contact" className="hover:underline cursor-pointer">
@@ -34,7 +34,7 @@ const Navbar = () => {
             <Link to="/about" className="hover:underline cursor-pointer">
               About
             </Link>
-            <Link to="/signup" className="hover:underline cursor-pointer">
+            <Link to="/" className="hover:underline cursor-pointer">
               Sign Up
             </Link>
           </ul>
@@ -66,7 +66,7 @@ const Navbar = () => {
           <>
             <ul className="md:hidden flex flex-col  mt-8 text-sm font-semibold border-t-2 ">
               <Link
-                to="/"
+                to="/home"
                 className="hover:bg-black hover:text-white text-2xl cursor-pointer mt-6 p-2"
               >
                 Home
@@ -84,7 +84,7 @@ const Navbar = () => {
                 About
               </Link>
               <Link
-                to="/signup"
+                to="/"
                 className="hover:bg-black hover:text-white text-2xl cursor-pointer p-2"
               >
                 Sign Up
