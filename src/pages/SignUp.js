@@ -1,9 +1,34 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import phoneimage from "../assets/signup.jpg";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router";
-
+import { Link, useNavigate } from "react-router";
+import { FirebaseContext } from "../context/FirebaseProvider";
 const SignUp = () => {
+  const { signup, signInWithGoogle } = useContext(FirebaseContext);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await signup(email, password);
+      navigate("/login");
+    } catch (error) {
+      console.error("Error signing up:", error);
+    }
+  };
+
+  const handleGoogleSignUp = async () => {
+    try {
+      await signInWithGoogle();
+      navigate("/home");
+    } catch (error) {
+      console.error("Error with Google sign-up:", error);
+    }
+  };
+
   return (
     <div className="mt-6 mx-4 lg:mx-24 flex flex-col items-center md:flex-row justify-center md:mt-14">
       <div className="w-full flex items-center justify-center mb-6">
@@ -18,18 +43,24 @@ const SignUp = () => {
           Enter your details below
         </p>
 
-        <form className="flex flex-col gap-6">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-6">
           <input
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             type="text"
             placeholder="Name"
             className="w-full px-4 py-2 border border-gray-300 rounded-md"
           />
           <input
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             type="email"
             placeholder="Email or Phone Number"
             className="w-full px-4 py-2 border border-gray-300 rounded-md"
           />
           <input
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             type="password"
             placeholder="Password"
             className="w-full px-4 py-2 border border-gray-300 rounded-md"
@@ -44,7 +75,10 @@ const SignUp = () => {
 
         <div className="text-center my-4">or</div>
 
-        <button className="w-full flex items-center justify-center border border-gray-300 py-2 rounded-md hover:bg-gray-100 transition">
+        <button
+          onClick={handleGoogleSignUp}
+          className="w-full flex items-center justify-center border border-gray-300 py-2 rounded-md hover:bg-gray-100 transition"
+        >
           <FcGoogle size={25} className="mr-2" />
           Sign up with Google
         </button>
