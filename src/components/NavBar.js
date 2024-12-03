@@ -15,6 +15,8 @@ const Navbar = () => {
   const { currentUser } = useContext(FirebaseContext);
   const navigate = useNavigate();
 
+  console.log(currentUser);
+
   return (
     <>
       <nav className="px-2 py-4 mx-4 lg:mx-24  bg-white  ">

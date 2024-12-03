@@ -1,70 +1,52 @@
 import {
+  onAuthStateChanged,
   createUserWithEmailAndPassword,
-  GoogleAuthProvider,
   signInWithEmailAndPassword,
-  signInWithPopup,
   signOut,
+  signInWithPopup,
+  GoogleAuthProvider,
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import { auth } from "../firebase/firebase";
 
-export const FirebaseContext = createContext(null);
+export const FirebaseContext = createContext();
 
 export const FirebaseProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
+  const [add, setAdd] = useState(false); //when to add value to current user
   const [loading, setLoading] = useState(true);
 
-  const signup = async (email, password) => {
-    try {
-      await createUserWithEmailAndPassword(auth, email, password);
-    } catch (error) {
-      console.error("Error signing up:", error);
-      throw error;
-    }
-  };
-
-  const login = async (email, password) => {
-    try {
-      const userCredential = await signInWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-
-      setCurrentUser(userCredential.user);
-      return userCredential;
-    } catch (error) {
-      console.error("Error logging in:", error);
-      throw error;
-    }
-  };
-
-  const logout = async () => {
-    try {
-      await signOut(auth);
-      setCurrentUser(null);
-    } catch (error) {
-      console.error("Error logging out:", error);
-      throw error;
-    }
-  };
-
-  const signInWithGoogle = async () => {
-    try {
-      const provider = new GoogleAuthProvider();
-      const userCredential = await signInWithPopup(auth, provider);
-
-      setCurrentUser(userCredential.user);
-      return userCredential;
-    } catch (error) {
-      console.error("Error with Google sign-in:", error);
-      throw error;
-    }
-  };
-
   useEffect(() => {
-    setLoading(false);
-  }, []);
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (add) {
+        setCurrentUser(user);
+      }
+      setLoading(false);
+    });
+
+    return unsubscribe;
+  }, [add]);
+
+  const signup = (email, password) => {
+    setAdd(false);
+    createUserWithEmailAndPassword(auth, email, password);
+  };
+
+  const login = (email, password) => {
+    setAdd(true);
+    signInWithEmailAndPassword(auth, email, password);
+  };
+
+  const logout = () => {
+    setAdd(true);
+    signOut(auth);
+  };
+
+  const signInWithGoogle = () => {
+    setAdd(true);
+    const provider = new GoogleAuthProvider();
+    return signInWithPopup(auth, provider);
+  };
 
   const value = {
     currentUser,
