@@ -52,11 +52,11 @@ const ProductCard = ({ product }) => {
         {/* Ratings */}
         <div className="flex items-center mt-2">
           <div className="flex text-yellow-400">
-            {[...Array(5)].map((_, i) => (
+            {[...Array(product.rating)].map((_, i) => (
               <FaStar key={i} />
             ))}
           </div>
-          <span className="ml-2 text-gray-500">({product.rating})</span>
+          <span className="ml-2 text-gray-500">({product.reviews})</span>
         </div>
       </div>
     </div>
