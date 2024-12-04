@@ -2,19 +2,21 @@ import React from "react";
 import { AiOutlineHeart, AiOutlineEye } from "react-icons/ai";
 import { FaStar } from "react-icons/fa";
 
-const ProductCard = () => {
+const ProductCard = ({ product }) => {
   return (
     <div className="relative rounded-lg shadow-md hover:shadow-lg bg-white w-[270px] h-[350px]">
       <div className="bg-[#F5F5F5] relative group">
         {/* Discount Badge */}
-        <div className="bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded w-12 absolute top-2 left-2">
-          -40%
-        </div>
+        {product.discount && (
+          <div className="bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded w-12 absolute top-2 left-2">
+            -{product.discount}%
+          </div>
+        )}
         {/* Image Section */}
         <div className="p-8">
           <img
-            src="https://th.bing.com/th/id/R.1618b1f3eab97325212502eb67102ab1?rik=kw0F02lHoDKzsw&pid=ImgRaw&r=0"
-            alt="HAVIT HV-G92 Gamepad"
+            src={product.image}
+            alt={product.title}
             className="w-full h-40 object-contain"
           />
           {/* Favorite and View Icons */}
@@ -27,8 +29,7 @@ const ProductCard = () => {
             </button>
           </div>
           {/* Add to Cart Button */}
-          <button className="absolute bottom-0 left-0 text-white font-semibold bg-black w-full h-10 hidden group-hover:flex items-center justify-center transition-all duration-300 ease-in-out transform group-hover:translate-y-0 opacity-100 group-hover:opacity-100 ">
-            {" "}
+          <button className="absolute bottom-0 left-0 text-white font-semibold bg-black w-full h-10 hidden group-hover:flex items-center justify-center transition-all duration-300 ease-in-out transform group-hover:translate-y-0 opacity-100 group-hover:opacity-100">
             Add to Cart
           </button>
         </div>
@@ -36,11 +37,17 @@ const ProductCard = () => {
       {/* Product Details */}
       <div className="mt-6 pl-4">
         <h3 className="mt-4 text-md font-semibold text-gray-800">
-          HAVIT HV-G92 Gamepad
+          {product.title}
         </h3>
         <div className="flex items-center mt-2">
-          <span className="text-red-500 text-md font-bold">$120</span>
-          <span className="ml-2 text-gray-400 line-through">$160</span>
+          <span className="text-red-500 text-md font-bold">
+            ${product.price}
+          </span>
+          {product.oldPrice && (
+            <span className="ml-2 text-gray-400 line-through">
+              ${product.oldPrice}
+            </span>
+          )}
         </div>
         {/* Ratings */}
         <div className="flex items-center mt-2">
@@ -49,7 +56,7 @@ const ProductCard = () => {
               <FaStar key={i} />
             ))}
           </div>
-          <span className="ml-2 text-gray-500">(88)</span>
+          <span className="ml-2 text-gray-500">({product.rating})</span>
         </div>
       </div>
     </div>
