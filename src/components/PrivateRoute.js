@@ -17,7 +17,7 @@ const PrivateRoute = ({ children }) => {
             Access Denied
           </h2>
           <p className="text-gray-600 mb-4">
-            Please verify your email or login to access this page.
+            Please login or sign up with google to access this page.
           </p>
           <Link
             to="/login"
