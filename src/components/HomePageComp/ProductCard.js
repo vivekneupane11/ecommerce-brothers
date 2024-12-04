@@ -4,21 +4,21 @@ import { FaStar } from "react-icons/fa";
 
 const ProductCard = () => {
   return (
-    <div className="relative p-4 rounded-lg shadow-md hover:shadow-lg bg-white w-[270px] h-[350px]">
-      <div className="bg-[#F5F5F5]">
+    <div className="relative rounded-lg shadow-md hover:shadow-lg bg-white w-[270px] h-[350px]">
+      <div className="bg-[#F5F5F5] relative group">
         {/* Discount Badge */}
-        <div className="bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded w-12">
+        <div className="bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded w-12 absolute top-2 left-2">
           -40%
         </div>
         {/* Image Section */}
-        <div className="relative">
+        <div className="p-8">
           <img
-            src="https://th.bing.com/th/id/R.1618b1f3eab97325212502eb67102ab1?rik=kw0F02lHoDKzsw&pid=ImgRaw&r=0" // Replace with actual image URL
+            src="https://th.bing.com/th/id/R.1618b1f3eab97325212502eb67102ab1?rik=kw0F02lHoDKzsw&pid=ImgRaw&r=0"
             alt="HAVIT HV-G92 Gamepad"
             className="w-full h-40 object-contain"
           />
           {/* Favorite and View Icons */}
-          <div className="absolute top-0 right-1 flex flex-col gap-2">
+          <div className="absolute top-2 right-2 flex flex-col gap-2">
             <button className="p-2 bg-white rounded-full hover:text-red-500">
               <AiOutlineHeart className="text-black-500 text-lg" />
             </button>
@@ -26,10 +26,15 @@ const ProductCard = () => {
               <AiOutlineEye className="text-black-500 text-lg" />
             </button>
           </div>
+          {/* Add to Cart Button */}
+          <button className="absolute bottom-0 left-0 text-white font-semibold bg-black w-full h-10 hidden group-hover:flex items-center justify-center transition-all duration-300 ease-in-out transform group-hover:translate-y-0 opacity-100 group-hover:opacity-100 ">
+            {" "}
+            Add to Cart
+          </button>
         </div>
       </div>
       {/* Product Details */}
-      <div className="mt-10">
+      <div className="mt-6 pl-4">
         <h3 className="mt-4 text-md font-semibold text-gray-800">
           HAVIT HV-G92 Gamepad
         </h3>
