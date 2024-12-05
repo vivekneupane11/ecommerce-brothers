@@ -64,7 +64,7 @@ const BrowseByCategory = () => {
       <h2 className="text-2xl font-bold mb-4 mt-4 pb-2">Browse By Category</h2>
       {/* Arrows */}
       <button
-        className="absolute right-20 top-0 transform hover:bg-red-100 bg-white p-2 rounded-full shadow-md z-10"
+        className="absolute right-12 top-0 transform hover:bg-red-100 bg-white p-2 rounded-full shadow-md z-10"
         onClick={scrollLeft}
       >
         <FaArrowLeft />
@@ -88,7 +88,7 @@ const BrowseByCategory = () => {
       </div>
 
       <button
-        className="absolute right-8  top-0 transform  hover:bg-red-100 bg-white p-2 rounded-full shadow-md z-10"
+        className="absolute right-0  top-0 transform  hover:bg-red-100 bg-white p-2 rounded-full shadow-md z-10"
         onClick={scrollRight}
       >
         <FaArrowRight />
