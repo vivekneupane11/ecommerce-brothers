@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { fireDB } from "./../../firebase/firebase";
+import { fireDB } from "../../../firebase/firebase";
 import { collection, getDocs } from "firebase/firestore";
+
 import Carousel from "./Carousel";
-import BrowseByCategory from "./BrowserCategoryComp/BrowseByCategory";
 
 const FlashSales = () => {
   const [products, setProducts] = useState([]);
@@ -11,7 +11,7 @@ const FlashSales = () => {
   // Fetch product data from Firestore and cache it
   useEffect(() => {
     const fetchProducts = async () => {
-      const cachedProducts = localStorage.getItem("flashsales");
+      const cachedProducts = sessionStorage.getItem("flashsales");
 
       if (cachedProducts) {
         setProducts(JSON.parse(cachedProducts));
@@ -24,7 +24,7 @@ const FlashSales = () => {
             productList.push({ id: doc.id, ...doc.data() });
           });
           setProducts(productList);
-          localStorage.setItem("flashsales", JSON.stringify(productList));
+          sessionStorage.setItem("flashsales", JSON.stringify(productList));
           setLoading(false);
         } catch (error) {
           console.error("Error fetching products: ", error);
@@ -69,8 +69,6 @@ const FlashSales = () => {
           View All Products
         </button>
       </div>
-
-      <BrowseByCategory />
     </div>
   );
 };

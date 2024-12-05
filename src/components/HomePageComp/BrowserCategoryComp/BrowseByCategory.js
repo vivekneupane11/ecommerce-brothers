@@ -7,10 +7,9 @@ import {
   FaGamepad,
   FaHeadphones,
   FaMobileAlt,
-  FaWatchmanMonitoring,
 } from "react-icons/fa";
 import { GiClothes } from "react-icons/gi";
-import { BiCategory } from "react-icons/bi";
+import { BiCategory, BiHome } from "react-icons/bi";
 import { BsSmartwatch } from "react-icons/bs";
 
 const categories = [
@@ -22,6 +21,7 @@ const categories = [
   { name: "Gaming", icon: <FaGamepad /> },
   { name: "Clothes", icon: <GiClothes /> },
   { name: "Others", icon: <BiCategory /> },
+  { name: "Furniture", icon: <BiHome /> },
 ];
 
 const CategoryCard = ({ name, icon }) => {
@@ -54,7 +54,7 @@ const BrowseByCategory = () => {
     }
   };
   return (
-    <div className="relative rounded-lg mt-10 ml-5 mb-10">
+    <div className="relative rounded-lg mt-10 ml-5 mb-10 lg:mx-24">
       <div className="flex gap-3">
         <div className="bg-red-500 text-red-500 text-sm font-semibold px-1 py-1 rounded-md inline-block">
           a
@@ -64,7 +64,7 @@ const BrowseByCategory = () => {
       <h2 className="text-2xl font-bold mb-4 mt-4 pb-2">Browse By Category</h2>
       {/* Arrows */}
       <button
-        className="absolute left-0 top-40 transform -translate-y-1/2 hover:bg-red-100 bg-white p-2 rounded-full shadow-md z-10"
+        className="absolute right-20 top-0 transform hover:bg-red-100 bg-white p-2 rounded-full shadow-md z-10"
         onClick={scrollLeft}
       >
         <FaArrowLeft />
@@ -75,7 +75,7 @@ const BrowseByCategory = () => {
         className="flex overflow-x-scroll space-x-4 carousel-container"
       >
         <div>
-          <div className="flex items-center justify-between gap-3 md:gap-10">
+          <div className="flex items-center justify-between gap-3 ">
             {categories.map((category, index) => (
               <CategoryCard
                 key={index}
@@ -88,7 +88,7 @@ const BrowseByCategory = () => {
       </div>
 
       <button
-        className="absolute right-0  top-40 transform -translate-y-1/2 hover:bg-red-100 bg-white p-2 rounded-full shadow-md z-10"
+        className="absolute right-8  top-0 transform  hover:bg-red-100 bg-white p-2 rounded-full shadow-md z-10"
         onClick={scrollRight}
       >
         <FaArrowRight />

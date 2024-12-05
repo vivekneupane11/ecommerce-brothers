@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import ProductCard from "./ProductCard";
-import "../../App.css";
+import "../../../App.css";
 
 const Carousel = ({ products }) => {
   const carouselRef = useRef(null);
@@ -25,10 +25,10 @@ const Carousel = ({ products }) => {
   };
 
   return (
-    <div className="relative rounded-lg mt-6">
+    <div className="relative rounded-lg mt-6 pt-10 ml-5 lg:ml-0 ">
       {/* Arrows */}
       <button
-        className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white hover:bg-red-100 p-2 rounded-full shadow-md z-10"
+        className="absolute right-20 top-0 transform  bg-white hover:bg-red-100 p-2 rounded-full shadow-md z-10"
         onClick={scrollLeft}
       >
         <FaArrowLeft />
@@ -46,7 +46,7 @@ const Carousel = ({ products }) => {
       </div>
 
       <button
-        className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white hover:bg-red-100 p-2 rounded-full shadow-md z-10"
+        className="absolute right-8 top-0 transform  bg-white hover:bg-red-100 p-2 rounded-full shadow-md z-10"
         onClick={scrollRight}
       >
         <FaArrowRight />
