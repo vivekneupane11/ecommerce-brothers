@@ -6,6 +6,7 @@ import ProductsComp from "../components/HomePageComp/ProductsComp/ProductsComp";
 import PromoPage from "../components/HomePageComp/PromoComp/PromoPage";
 import MiddleBanner from "../components/HomePageComp/MiddleBannerComp/MiddleBanner";
 import NewArrival from "../components/HomePageComp/NewArrivalComp/NewArrival";
+import BottomComp from "../components/HomePageComp/BottomComp/BottomComp";
 
 const Home = () => {
   return (
@@ -17,6 +18,7 @@ const Home = () => {
       <MiddleBanner />
       <ProductsComp />
       <NewArrival />
+      <BottomComp />
     </div>
   );
 };
