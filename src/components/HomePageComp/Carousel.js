@@ -28,7 +28,7 @@ const Carousel = ({ products }) => {
     <div className="relative rounded-lg mt-6">
       {/* Arrows */}
       <button
-        className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md z-10"
+        className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white hover:bg-red-100 p-2 rounded-full shadow-md z-10"
         onClick={scrollLeft}
       >
         <FaArrowLeft />
