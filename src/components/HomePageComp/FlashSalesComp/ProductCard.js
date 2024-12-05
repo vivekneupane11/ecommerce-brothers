@@ -13,6 +13,12 @@ const ProductCard = ({ product }) => {
             -{product.discount}%
           </div>
         )}
+        {/* new Badge */}
+        {product.new && (
+          <div className="bg-green-600 text-white text-xs font-semibold px-2 py-1 rounded w-12 absolute top-2 left-2">
+            NEW
+          </div>
+        )}
         {/* Image Section */}
         <div className="p-8">
           <img

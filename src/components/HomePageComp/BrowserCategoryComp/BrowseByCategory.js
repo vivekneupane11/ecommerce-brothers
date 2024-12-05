@@ -20,8 +20,8 @@ const categories = [
   { name: "HeadPhones", icon: <FaHeadphones /> },
   { name: "Gaming", icon: <FaGamepad /> },
   { name: "Clothes", icon: <GiClothes /> },
-  { name: "Others", icon: <BiCategory /> },
   { name: "Furniture", icon: <BiHome /> },
+  { name: "Others", icon: <BiCategory /> },
 ];
 
 const CategoryCard = ({ name, icon }) => {
