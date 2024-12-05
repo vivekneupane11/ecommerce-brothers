@@ -4,6 +4,8 @@ import BrowseByCategory from "./../components/HomePageComp/BrowserCategoryComp/B
 import BestSelling from "../components/HomePageComp/BestSellingComp/BestSelling";
 import ProductsComp from "../components/HomePageComp/ProductsComp/ProductsComp";
 import PromoPage from "../components/HomePageComp/PromoComp/PromoPage";
+import MiddleBanner from "../components/HomePageComp/MiddleBannerComp/MiddleBanner";
+import NewArrival from "../components/HomePageComp/NewArrivalComp/NewArrival";
 
 const Home = () => {
   return (
@@ -12,7 +14,9 @@ const Home = () => {
       <FlashSales />
       <BrowseByCategory />
       <BestSelling />
+      <MiddleBanner />
       <ProductsComp />
+      <NewArrival />
     </div>
   );
 };
