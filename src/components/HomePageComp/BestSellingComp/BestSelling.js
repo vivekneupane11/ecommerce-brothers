@@ -40,7 +40,7 @@ const BestSelling = () => {
   return (
     <div className="mt-8 lg:mx-24">
       {/* Header */}
-      <div className="flex flex-col items-start">
+      <div className="flex flex-col items-start ml-5 lg:ml-0">
         <div className="flex gap-3">
           <div className="bg-red-500 text-red-500 text-sm font-semibold px-1 py-1 rounded-md inline-block">
             a

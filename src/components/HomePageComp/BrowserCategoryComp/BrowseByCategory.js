@@ -72,10 +72,10 @@ const BrowseByCategory = () => {
 
       <div
         ref={carouselRef}
-        className="flex overflow-x-scroll space-x-4 carousel-container"
+        className="flex overflow-x-scroll carousel-container"
       >
         <div>
-          <div className="flex items-center justify-between gap-3 ml-5 ">
+          <div className="flex items-center justify-between gap-3 ml-3 ">
             {categories.map((category, index) => (
               <CategoryCard
                 key={index}
