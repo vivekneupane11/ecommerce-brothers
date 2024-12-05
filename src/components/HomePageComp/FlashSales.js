@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { fireDB } from "./../../firebase/firebase";
 import { collection, getDocs } from "firebase/firestore";
 import Carousel from "./Carousel";
+import BrowseByCategory from "./BrowserCategoryComp/BrowseByCategory";
 
 const FlashSales = () => {
   const [products, setProducts] = useState([]);
@@ -72,6 +73,8 @@ const FlashSales = () => {
           {showAll ? "Show Less" : "View All Products"}
         </button>
       </div>
+
+      <BrowseByCategory />
     </div>
   );
 };

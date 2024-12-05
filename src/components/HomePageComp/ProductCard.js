@@ -1,6 +1,7 @@
 import React from "react";
 import { AiOutlineHeart, AiOutlineEye } from "react-icons/ai";
 import { FaStar } from "react-icons/fa";
+import { FaStarHalfAlt } from "react-icons/fa";
 
 const ProductCard = ({ product }) => {
   return (
@@ -52,9 +53,14 @@ const ProductCard = ({ product }) => {
         {/* Ratings */}
         <div className="flex items-center mt-2">
           <div className="flex text-yellow-400">
-            {[...Array(product.rating)].map((_, i) => (
+            {[...Array(Math.floor(product.rating))].map((_, i) => (
               <FaStar key={i} />
             ))}
+            {product.rating % 1 >= 0.5 && (
+              <>
+                <FaStarHalfAlt />
+              </>
+            )}
           </div>
           <span className="ml-2 text-gray-500">({product.reviews})</span>
         </div>
