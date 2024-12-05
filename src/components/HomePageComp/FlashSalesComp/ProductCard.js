@@ -5,7 +5,7 @@ import { FaStarHalfAlt } from "react-icons/fa";
 
 const ProductCard = ({ product }) => {
   return (
-    <div className="relative rounded-lg shadow-md hover:shadow-lg bg-white w-[270px] h-[350px]">
+    <div className="relative rounded-lg shadow-md hover:shadow-lg bg-white w-[250px] h-[350px]">
       <div className="bg-[#F5F5F5] relative group">
         {/* Discount Badge */}
         {product.discount && (
