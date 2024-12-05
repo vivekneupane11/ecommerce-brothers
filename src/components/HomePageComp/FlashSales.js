@@ -7,7 +7,6 @@ import BrowseByCategory from "./BrowserCategoryComp/BrowseByCategory";
 const FlashSales = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [showAll, setShowAll] = useState(false);
 
   // Fetch product data from Firestore and cache it
   useEffect(() => {
@@ -66,11 +65,8 @@ const FlashSales = () => {
       )}
       {/* View All Button */}
       <div className="flex justify-center mt-6">
-        <button
-          className="bg-red-500  text-white font-semibold py-2 px-4 rounded-sm transition duration-300 hover:bg-red-600"
-          onClick={() => setShowAll(!showAll)}
-        >
-          {showAll ? "Show Less" : "View All Products"}
+        <button className="bg-red-500  text-white font-semibold py-2 px-4 rounded-sm transition duration-300 hover:bg-red-600">
+          View All Products
         </button>
       </div>
 

@@ -46,7 +46,7 @@ const Carousel = ({ products }) => {
       </div>
 
       <button
-        className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md z-10"
+        className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white hover:bg-red-100 p-2 rounded-full shadow-md z-10"
         onClick={scrollRight}
       >
         <FaArrowRight />
