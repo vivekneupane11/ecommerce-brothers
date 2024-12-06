@@ -26,7 +26,7 @@ const categories = [
 
 const CategoryCard = ({ name, icon }) => {
   return (
-    <div className="flex flex-col items-center justify-center w-32 h-32 bg-white border border-gray-300 rounded-lg hover:bg-red-500 hover:text-white transition duration-300 cursor-pointer">
+    <div className="mb-2 flex flex-col items-center justify-center w-32 h-32 bg-white border border-gray-300 rounded-lg hover:bg-red-500 hover:text-white transition duration-300 cursor-pointer">
       <div className="text-3xl">{icon}</div>
       <span className="mt-2 font-medium">{name}</span>
     </div>

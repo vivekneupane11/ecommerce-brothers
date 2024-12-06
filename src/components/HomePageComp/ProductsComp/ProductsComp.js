@@ -4,10 +4,12 @@ import { useState } from "react";
 import Carousel from "../FlashSalesComp/Carousel";
 import { fireDB } from "../../../firebase/firebase";
 import { collection, getDocs } from "firebase/firestore";
+import { useNavigate } from "react-router";
 
 const ProductsComp = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -35,6 +37,10 @@ const ProductsComp = () => {
 
     fetchProducts();
   }, []);
+
+  const goToAllProducts = () => {
+    navigate("/allproducts");
+  };
   return (
     <div className="mt-8 lg:mx-24">
       <div className="flex flex-col items-start ml-5">
@@ -60,7 +66,10 @@ const ProductsComp = () => {
         <Carousel products={products} />
       )}
       <div className="flex justify-center mt-6">
-        <button className="bg-red-500 text-white font-semibold py-2 px-4 rounded-sm transition duration-300 hover:bg-red-600">
+        <button
+          onClick={goToAllProducts}
+          className="bg-red-500 text-white font-semibold py-2 px-4 rounded-sm transition duration-300 hover:bg-red-600"
+        >
           View All Products
         </button>
       </div>
