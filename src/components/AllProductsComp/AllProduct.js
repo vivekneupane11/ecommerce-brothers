@@ -36,9 +36,18 @@ const AllProduct = () => {
 
   return (
     <div>
-      <div className="lg:mx-24 md:p-5 md:flex ">
+      <div className="lg:mx-24 flex flex-col md:flex-row ">
         <div>
-          <h2 className="text-2xl font-bold mb-6">All Collections</h2>
+          <div className="flex flex-col items-start ml-5 mt-8">
+            <div className="flex gap-3">
+              <div className="bg-red-500 text-red-500 text-sm font-semibold px-1 py-1 rounded-md inline-block">
+                a
+              </div>
+              <h1 className="text-red-500 font-semibold text-xl sm:text-2xl">
+                All Products
+              </h1>
+            </div>
+          </div>
 
           {/* Category Filter */}
           <CategoryFilter
@@ -47,7 +56,7 @@ const AllProduct = () => {
           />
         </div>
 
-        <div className="flex flex-col items-center justify-center gap-6 md:flex-row md:flex-wrap">
+        <div className="flex flex-col items-center gap-6 md:flex-row md:flex-wrap md:p-10 md:ml-5 md:items-center md:justify-center ">
           {filteredProducts.map((product) => (
             <div key={product.id}>
               <ProductCard product={product} />

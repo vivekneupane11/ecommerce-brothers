@@ -25,16 +25,19 @@ const CategoryFilter = ({ selectedCategories, setSelectedCategories }) => {
   };
 
   return (
-    <div className="mb-6 flex flex-wrap p-5 md:flex-col justify-center sm:justify-start gap-2">
+    <div className="mb-6 p-10 sm:p-6 lg:p-10 flex flex-col gap-4 items-start">
       {categories.map((cat) => (
-        <label key={cat} className="flex items-center gap-2">
+        <label
+          key={cat}
+          className="flex items-center gap-2 cursor-pointer text-sm sm:text-base"
+        >
           <input
             type="checkbox"
             checked={selectedCategories.includes(cat)}
             onChange={() => handleCheckboxChange(cat)}
-            className="form-checkbox"
+            className="form-checkbox h-5 w-5 sm:h-6 sm:w-6"
           />
-          <span>{cat.charAt(0).toUpperCase() + cat.slice(1)}</span>
+          <span className="capitalize">{cat}</span>
         </label>
       ))}
     </div>
