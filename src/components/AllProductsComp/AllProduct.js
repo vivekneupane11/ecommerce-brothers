@@ -14,7 +14,6 @@ const AllProduct = () => {
     const storedFlashSales = sessionStorage.getItem("flashsales");
     const storedBestSelling = sessionStorage.getItem("bestselling");
 
-    // Parse and merge the data
     const allProducts = [
       ...(storedProducts ? JSON.parse(storedProducts) : []),
       ...(storedFlashSales ? JSON.parse(storedFlashSales) : []),
@@ -25,7 +24,6 @@ const AllProduct = () => {
   }, []);
 
   useEffect(() => {
-    // Filter products based on selected categories
     let filtered =
       selectedCategories.length === 0 || selectedCategories.includes("all")
         ? products
@@ -33,7 +31,6 @@ const AllProduct = () => {
             selectedCategories.includes(product.category.toLowerCase())
           );
 
-    // Sort products based on the selected sorting option
     let sortedArray = [...filtered];
     switch (sortOption) {
       case "low-to-high":
@@ -60,7 +57,7 @@ const AllProduct = () => {
             All Products
           </h1>
         </div>
-        {/* Category Filter */}
+
         <CategoryFilter
           selectedCategories={selectedCategories}
           setSelectedCategories={setSelectedCategories}

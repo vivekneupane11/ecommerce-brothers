@@ -24,6 +24,7 @@ const NewArrival = () => {
           src={psimage}
           alt="playstation"
           className="h-[400px] md:h-[500px] lg:w-[570px] lg:h-[600px] object-fill"
+          loading="lazy"
         />
 
         <div className="flex flex-col gap-3">
@@ -31,6 +32,7 @@ const NewArrival = () => {
             src={womenimage}
             alt="women"
             className="h-[400px] md:h-[500px] lg:w-[570px] lg:h-[302px] object-fill"
+            loading="lazy"
           />
 
           <div className="flex flex-col lg:flex-row gap-3 sm:flex-row">
@@ -38,11 +40,13 @@ const NewArrival = () => {
               src={speakers}
               alt="speaker"
               className="h-[400px] md:h-[500px] lg:w-[270px] lg:h-[284px] object-fill"
+              loading="lazy"
             />
             <img
               src={perfumeimage}
               alt="perfume"
               className="h-[400px] md:h-[500px] lg:w-[270px] lg:h-[284px] object-fill"
+              loading="lazy"
             />
           </div>
         </div>

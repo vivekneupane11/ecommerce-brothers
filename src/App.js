@@ -1,37 +1,44 @@
-import React from "react";
+import React, { Suspense } from "react";
 import Navbar from "./components/NavBar";
 import { Route, Routes } from "react-router";
-import Home from "./pages/Home";
-import Contact from "./pages/Contact";
-import SignUp from "./pages/SignUp";
-import About from "./pages/About";
-import Login from "./pages/Login";
-import PrivateRoute from "./components/PrivateRoute";
-import Account from "./pages/Account";
-import AllProduct from "./components/AllProductsComp/AllProduct";
-import ProductDetails from "./components/ProductDetailsComp/ProductDetails";
+import Loader from "./components/HomePageComp/FlashSalesComp/Loader";
+const Home = React.lazy(() => import("./pages/Home"));
+const Contact = React.lazy(() => import("./pages/Contact"));
+const SignUp = React.lazy(() => import("./pages/SignUp"));
+const About = React.lazy(() => import("./pages/About"));
+const Login = React.lazy(() => import("./pages/Login"));
+const PrivateRoute = React.lazy(() => import("./components/PrivateRoute"));
+const Account = React.lazy(() => import("./pages/Account"));
+const AllProduct = React.lazy(() =>
+  import("./components/AllProductsComp/AllProduct")
+);
+const ProductDetails = React.lazy(() =>
+  import("./components/ProductDetailsComp/ProductDetails")
+);
 
 const App = () => {
   return (
     <div>
       <Navbar />
-      <Routes>
-        <Route path="/" element={<SignUp />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/allproducts" element={<AllProduct />} />
-        <Route path="/product/:id" element={<ProductDetails />} />
-        <Route
-          path="/account"
-          element={
-            <PrivateRoute>
-              <Account />
-            </PrivateRoute>
-          }
-        />
-      </Routes>
+      <Suspense fallback={<Loader />}>
+        <Routes>
+          <Route path="/" element={<SignUp />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/allproducts" element={<AllProduct />} />
+          <Route path="/product/:id" element={<ProductDetails />} />
+          <Route
+            path="/account"
+            element={
+              <PrivateRoute>
+                <Account />
+              </PrivateRoute>
+            }
+          />
+        </Routes>
+      </Suspense>
     </div>
   );
 };

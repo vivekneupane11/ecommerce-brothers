@@ -17,6 +17,7 @@ const MiddleBanner = () => {
         src={speakerimage}
         alt="speaker"
         className="h-auto rounded-lg md:w-1/2 lg:w-1/3"
+        loading="lazy"
       />
     </div>
   );

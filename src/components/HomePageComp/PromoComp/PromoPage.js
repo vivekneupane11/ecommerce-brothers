@@ -22,6 +22,7 @@ const PromoPage = () => {
           src={iphoneimage}
           alt="iPhone 14"
           className="w-full h-auto rounded-lg md:w-96 md:my-6 lg:h-80 lg:mt-20"
+          loading="lazy"
         />
       </div>
     </div>
