@@ -10,7 +10,6 @@ const PriceSort = ({ sortOption, setSortOption }) => {
         Sort by:
       </label>
       <select
-        id="priceSort"
         value={sortOption}
         onChange={(e) => setSortOption(e.target.value)}
         className="p-2 border rounded-md"

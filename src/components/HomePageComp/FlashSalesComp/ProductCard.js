@@ -2,8 +2,13 @@ import React from "react";
 import { AiOutlineHeart, AiOutlineEye } from "react-icons/ai";
 import { FaStar } from "react-icons/fa";
 import { FaStarHalfAlt } from "react-icons/fa";
+import { useNavigate } from "react-router";
 
 const ProductCard = ({ product }) => {
+  const navigate = useNavigate();
+  const handleViewDetails = () => {
+    navigate(`/product/${product.id}`);
+  };
   return (
     <div className="relative rounded-lg shadow-md hover:shadow-lg bg-white w-[250px] h-[350px]">
       <div className="bg-[#F5F5F5] relative group">
@@ -36,7 +41,10 @@ const ProductCard = ({ product }) => {
             </button>
           </div>
           {/* Add to Cart Button */}
-          <button className="absolute bottom-0 left-0 text-white font-semibold bg-black w-full h-10 hidden group-hover:flex items-center justify-center transition-all duration-300 ease-in-out transform group-hover:translate-y-0 opacity-100 group-hover:opacity-100">
+          <button
+            onClick={handleViewDetails}
+            className="absolute bottom-0 left-0 text-white font-semibold bg-black w-full h-10 hidden group-hover:flex items-center justify-center transition-all duration-300 ease-in-out transform group-hover:translate-y-0 opacity-100 group-hover:opacity-100"
+          >
             Add to Cart
           </button>
         </div>

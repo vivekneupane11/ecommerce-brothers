@@ -9,6 +9,7 @@ import Login from "./pages/Login";
 import PrivateRoute from "./components/PrivateRoute";
 import Account from "./pages/Account";
 import AllProduct from "./components/AllProductsComp/AllProduct";
+import ProductDetails from "./components/ProductDetailsComp/ProductDetails";
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/about" element={<About />} />
         <Route path="/home" element={<Home />} />
         <Route path="/allproducts" element={<AllProduct />} />
+        <Route path="/product/:id" element={<ProductDetails />} />
         <Route
           path="/account"
           element={
