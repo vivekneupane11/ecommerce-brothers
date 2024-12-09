@@ -1,19 +1,19 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart, updateQuantity } from "../redux/cartSlice";
+import { Link } from "react-router";
 
 const CartPage = () => {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
-  console.log(cart.items);
 
-  const handleRemove = (id) => {
-    dispatch(removeFromCart(id));
+  const handleRemove = (id, size) => {
+    dispatch(removeFromCart({ id, size }));
   };
 
-  const handleQuantityChange = (id, quantity) => {
+  const handleQuantityChange = (id, size, quantity) => {
     if (quantity > 0) {
-      dispatch(updateQuantity({ id, quantity }));
+      dispatch(updateQuantity({ id, size, quantity }));
     }
   };
 
@@ -34,7 +34,7 @@ const CartPage = () => {
       <div className="max-w-5xl mx-auto">
         {cart.items.map((item) => (
           <div
-            key={item.id}
+            key={`${item.id}-${item.size}`}
             className="flex flex-col sm:flex-row justify-between items-center border-b py-4"
           >
             <div className="flex items-center gap-4">
@@ -45,6 +45,7 @@ const CartPage = () => {
               />
               <div>
                 <h3 className="text-lg font-semibold">{item.title}</h3>
+                <p className="text-sm text-gray-600">Size: {item.size}</p>
                 <p className="text-sm text-gray-600">
                   Price: ${item.price.toFixed(2)}
                 </p>
@@ -58,7 +59,7 @@ const CartPage = () => {
                 <button
                   className="w-8 h-8 bg-gray-200 text-center"
                   onClick={() =>
-                    handleQuantityChange(item.id, item.quantity - 1)
+                    handleQuantityChange(item.id, item.size, item.quantity - 1)
                   }
                 >
                   -
@@ -72,7 +73,7 @@ const CartPage = () => {
                 <button
                   className="w-8 h-8 bg-gray-200 text-center"
                   onClick={() =>
-                    handleQuantityChange(item.id, item.quantity + 1)
+                    handleQuantityChange(item.id, item.size, item.quantity + 1)
                   }
                 >
                   +
@@ -80,18 +81,55 @@ const CartPage = () => {
               </div>
               <button
                 className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-                onClick={() => handleRemove(item.id)}
+                onClick={() => handleRemove(item.id, item.size)}
               >
                 Remove
               </button>
             </div>
           </div>
         ))}
-        <div className="flex justify-between items-center mt-6 border-t pt-4">
-          <h2 className="text-lg font-bold">Total Amount:</h2>
-          <span className="text-xl font-semibold">
-            ${cart.totalAmount.toFixed(2)}
-          </span>
+
+        <div className="flex flex-col md:flex-row justify-between items-start mt-8 gap-6">
+          <div className="flex flex-col w-full md:w-1/2 gap-4">
+            <div className="flex gap-2">
+              <input
+                type="text"
+                placeholder="Coupon Code"
+                className="w-full p-2 border border-gray-300 rounded"
+              />
+              <button className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">
+                Apply Coupon
+              </button>
+            </div>
+            <Link
+              to="/home"
+              className="px-4 py-2 bg-gray-200 text-gray-600 rounded hover:bg-gray-300"
+            >
+              Return To Shop
+            </Link>
+          </div>
+
+          <div className="w-full md:w-1/3 border p-4 rounded">
+            <h2 className="text-lg font-bold mb-4">Cart Total</h2>
+            <div className="flex justify-between text-sm mb-2">
+              <span>Subtotal:</span>
+              <span>${cart.totalAmount.toFixed(2)}</span>
+            </div>
+            <div className="flex justify-between text-sm mb-2">
+              <span>Shipping:</span>
+              <span>Free</span>
+            </div>
+            <div className="flex justify-between text-lg font-semibold border-t pt-2">
+              <span>Total:</span>
+              <span className="mb-4">${cart.totalAmount.toFixed(2)}</span>
+            </div>
+            <Link
+              to="/checkout"
+              className="w-full mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+            >
+              Proceed to Checkout
+            </Link>
+          </div>
         </div>
       </div>
     </div>

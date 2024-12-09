@@ -8,6 +8,8 @@ import { addToCart } from "../../redux/cartSlice";
 const ProductDetails = () => {
   const [products, setProducts] = useState([]);
   const [quantity, setQuantity] = useState(1);
+  const [selectedSize, setSelectedSize] = useState(null);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -42,7 +44,12 @@ const ProductDetails = () => {
   };
 
   const handleAddToCart = () => {
-    dispatch(addToCart({ ...product, quantity }));
+    if (!selectedSize) {
+      alert("Please select a size before adding to cart.");
+      return;
+    }
+
+    dispatch(addToCart({ ...product, quantity, size: selectedSize }));
   };
 
   return (
@@ -86,7 +93,10 @@ const ProductDetails = () => {
           {["XS", "S", "M", "L", "XL"].map((size) => (
             <button
               key={size}
-              className="px-4 py-2 border hover:bg-gray-100 focus:bg-gray-200 focus:outline-none"
+              onClick={() => setSelectedSize(size)}
+              className={`px-4 py-2 border hover:bg-gray-100 focus:outline-none ${
+                selectedSize === size ? "bg-gray-200" : ""
+              }`}
             >
               {size}
             </button>
