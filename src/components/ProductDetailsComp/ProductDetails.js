@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { AiOutlineHeart } from "react-icons/ai";
 import { FaStar, FaStarHalfAlt, FaTruck, FaUndo } from "react-icons/fa";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router";
+import { addToCart } from "../../redux/cartSlice";
 
 const ProductDetails = () => {
   const [products, setProducts] = useState([]);
-  const [quantity, setQuantity] = useState(1); // State for quantity
+  const [quantity, setQuantity] = useState(1);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const storedProducts = sessionStorage.getItem("products");
@@ -36,6 +39,10 @@ const ProductDetails = () => {
     if (quantity > 1) {
       setQuantity(quantity - 1);
     }
+  };
+
+  const handleAddToCart = () => {
+    dispatch(addToCart({ ...product, quantity }));
   };
 
   return (
@@ -109,8 +116,11 @@ const ProductDetails = () => {
           </div>
 
           <div className="flex gap-2">
-            <button className="px-6 py-2 bg-red-500 text-white rounded-md hover:bg-red-600">
-              Buy Now
+            <button
+              onClick={handleAddToCart}
+              className="px-6 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
+            >
+              Add to Cart
             </button>
             <button className="p-2 bg-white hover:text-red-500 border-2">
               <AiOutlineHeart className="text-black-500" />

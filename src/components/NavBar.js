@@ -15,7 +15,9 @@ const Navbar = () => {
   const { currentUser } = useContext(FirebaseContext);
   const navigate = useNavigate();
 
-  console.log(currentUser);
+  const handleClick = () => {
+    navigate("/cart");
+  };
 
   return (
     <>
@@ -66,6 +68,7 @@ const Navbar = () => {
               size={20}
             />
             <HiOutlineShoppingCart
+              onClick={handleClick}
               className="text-gray-700 hover:text-green-500 cursor-pointer"
               size={20}
             />
@@ -125,6 +128,7 @@ const Navbar = () => {
                   className="text-gray-700 hover:text-red-500 cursor-pointer"
                   size={30}
                 />
+
                 <HiOutlineShoppingCart
                   className="text-gray-700 hover:text-green-500 cursor-pointer"
                   size={30}
