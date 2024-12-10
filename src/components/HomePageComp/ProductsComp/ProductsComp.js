@@ -14,7 +14,7 @@ const ProductsComp = () => {
   const documentName = "products";
 
   useEffect(() => {
-    const cachedProducts = sessionStorage.getItem(documentName);
+    const cachedProducts = localStorage.getItem(documentName);
 
     if (cachedProducts) {
       setProducts(JSON.parse(cachedProducts));

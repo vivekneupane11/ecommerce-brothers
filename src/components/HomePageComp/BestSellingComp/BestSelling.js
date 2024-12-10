@@ -5,7 +5,7 @@ import Carousel from "../FlashSalesComp/Carousel";
 import { fetchProducts } from "../../../utilities/fetchProducts";
 import Header from "./../FlashSalesComp/Header";
 import ViewAllButton from "./../FlashSalesComp/ViewAllButton";
-import Loader from './../FlashSalesComp/Loader';
+import Loader from "./../FlashSalesComp/Loader";
 
 const BestSelling = () => {
   const [products, setProducts] = useState([]);
@@ -13,7 +13,7 @@ const BestSelling = () => {
   const documentName = "bestselling";
 
   useEffect(() => {
-    const cachedProducts = sessionStorage.getItem(documentName);
+    const cachedProducts = localStorage.getItem(documentName);
 
     if (cachedProducts) {
       setProducts(JSON.parse(cachedProducts));

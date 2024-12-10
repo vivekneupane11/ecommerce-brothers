@@ -91,16 +91,6 @@ const CartPage = () => {
 
         <div className="flex flex-col md:flex-row justify-between items-start mt-8 gap-6">
           <div className="flex flex-col w-full md:w-1/2 gap-4">
-            <div className="flex gap-2">
-              <input
-                type="text"
-                placeholder="Coupon Code"
-                className="w-full p-2 border border-gray-300 rounded"
-              />
-              <button className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">
-                Apply Coupon
-              </button>
-            </div>
             <Link
               to="/home"
               className="px-4 py-2 bg-gray-200 text-gray-600 rounded hover:bg-gray-300"

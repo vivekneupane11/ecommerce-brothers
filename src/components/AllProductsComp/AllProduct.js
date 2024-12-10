@@ -10,9 +10,9 @@ const AllProduct = () => {
   const [sortOption, setSortOption] = useState("relevant");
 
   useEffect(() => {
-    const storedProducts = sessionStorage.getItem("products");
-    const storedFlashSales = sessionStorage.getItem("flashsales");
-    const storedBestSelling = sessionStorage.getItem("bestselling");
+    const storedProducts = localStorage.getItem("products");
+    const storedFlashSales = localStorage.getItem("flashsales");
+    const storedBestSelling = localStorage.getItem("bestselling");
 
     const allProducts = [
       ...(storedProducts ? JSON.parse(storedProducts) : []),

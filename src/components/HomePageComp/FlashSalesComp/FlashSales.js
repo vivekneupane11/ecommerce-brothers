@@ -13,7 +13,7 @@ const FlashSales = () => {
   const documentName = "flashsales";
 
   useEffect(() => {
-    const cachedProducts = sessionStorage.getItem(documentName);
+    const cachedProducts = localStorage.getItem(documentName);
 
     if (cachedProducts) {
       setProducts(JSON.parse(cachedProducts));

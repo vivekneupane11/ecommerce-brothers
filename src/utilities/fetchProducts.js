@@ -13,7 +13,7 @@ export const fetchProducts = async (
       productList.push({ id: doc.id, ...doc.data() });
     });
     setProducts(productList);
-    sessionStorage.setItem(documentName, JSON.stringify(productList));
+    localStorage.setItem(documentName, JSON.stringify(productList));
     setLoading(false);
   } catch (error) {
     console.error("Error fetching products: ", error);
