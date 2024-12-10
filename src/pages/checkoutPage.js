@@ -1,8 +1,62 @@
-import React from "react";
+import { useContext, useState } from "react";
+import { FirebaseContext } from "./../context/FirebaseProvider";
 import { useSelector } from "react-redux";
 
 const CheckoutPage = () => {
+  const { placeOrder } = useContext(FirebaseContext);
   const cart = useSelector((state) => state.cart);
+
+  const [billingDetails, setBillingDetails] = useState({
+    firstName: "",
+    companyName: "",
+    streetAddress: "",
+    apartment: "",
+    city: "",
+    phone: "",
+    email: "",
+  });
+
+  const [paymentMethod, setPaymentMethod] = useState("");
+  const [orderId, setOrderId] = useState(null); // Store the order ID
+  const [error, setError] = useState("");
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    setBillingDetails((prev) => ({ ...prev, [id]: value }));
+  };
+
+  const handlePlaceOrder = async () => {
+    if (!paymentMethod) {
+      setError("Please select a payment method.");
+      return;
+    }
+
+    try {
+      const id = await placeOrder(
+        billingDetails,
+        cart.items,
+        cart.totalAmount,
+        paymentMethod
+      );
+      setOrderId(id); // Set order ID to display confirmation
+    } catch (err) {
+      console.error(err);
+      setError("Failed to place order. Please try again.");
+    }
+  };
+
+  if (orderId) {
+    return (
+      <div className="p-6 lg:mx-24">
+        <h1 className="text-2xl font-bold mb-6 text-center">
+          Order Confirmation
+        </h1>
+        <p className="text-center text-lg">
+          Thank you for your purchase! Your order ID is{" "}
+          <strong>{orderId}</strong>.
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div className="p-6 lg:mx-24">
@@ -19,6 +73,8 @@ const CheckoutPage = () => {
                 type="text"
                 id="firstName"
                 className="w-full p-2 border border-gray-300 rounded"
+                value={billingDetails.firstName}
+                onChange={handleInputChange}
               />
             </div>
             <div>
@@ -32,6 +88,8 @@ const CheckoutPage = () => {
                 type="text"
                 id="companyName"
                 className="w-full p-2 border border-gray-300 rounded"
+                value={billingDetails.companyName}
+                onChange={handleInputChange}
               />
             </div>
             <div className="md:col-span-2">
@@ -45,6 +103,8 @@ const CheckoutPage = () => {
                 type="text"
                 id="streetAddress"
                 className="w-full p-2 border border-gray-300 rounded"
+                value={billingDetails.streetAddress}
+                onChange={handleInputChange}
               />
             </div>
             <div className="md:col-span-2">
@@ -55,6 +115,8 @@ const CheckoutPage = () => {
                 type="text"
                 id="apartment"
                 className="w-full p-2 border border-gray-300 rounded"
+                value={billingDetails.apartment}
+                onChange={handleInputChange}
               />
             </div>
             <div>
@@ -65,6 +127,8 @@ const CheckoutPage = () => {
                 type="text"
                 id="city"
                 className="w-full p-2 border border-gray-300 rounded"
+                value={billingDetails.city}
+                onChange={handleInputChange}
               />
             </div>
             <div>
@@ -75,6 +139,8 @@ const CheckoutPage = () => {
                 type="tel"
                 id="phone"
                 className="w-full p-2 border border-gray-300 rounded"
+                value={billingDetails.phone}
+                onChange={handleInputChange}
               />
             </div>
             <div className="md:col-span-2">
@@ -85,13 +151,9 @@ const CheckoutPage = () => {
                 type="email"
                 id="email"
                 className="w-full p-2 border border-gray-300 rounded"
+                value={billingDetails.email}
+                onChange={handleInputChange}
               />
-            </div>
-            <div className="flex items-center md:col-span-2">
-              <input type="checkbox" id="saveInfo" className="mr-2" />
-              <label htmlFor="saveInfo" className="text-sm">
-                Save this information for faster check-out next time
-              </label>
             </div>
           </form>
         </div>
@@ -128,34 +190,39 @@ const CheckoutPage = () => {
           <div className="mt-4">
             <h3 className="text-sm font-bold mb-2">Payment Method</h3>
             <div className="flex items-center gap-2 mb-2">
-              <input type="radio" name="payment" id="bank" className="mr-2" />
+              <input
+                type="radio"
+                name="payment"
+                id="bank"
+                value="Bank"
+                onChange={(e) => setPaymentMethod(e.target.value)}
+              />
               <label htmlFor="bank" className="text-sm">
                 Bank
               </label>
             </div>
             <div className="flex items-center gap-2">
-              <input type="radio" name="payment" id="cash" className="mr-2" />
+              <input
+                type="radio"
+                name="payment"
+                id="cash"
+                value="Cash"
+                onChange={(e) => setPaymentMethod(e.target.value)}
+              />
               <label htmlFor="cash" className="text-sm">
                 Cash on delivery
               </label>
             </div>
           </div>
 
-          {/* Coupon Section */}
-          <div className="mt-4 flex gap-2">
-            <input
-              type="text"
-              placeholder="Coupon Code"
-              className="w-full p-2 border border-gray-300 rounded"
-            />
-            <button className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">
-              Apply Coupon
-            </button>
-          </div>
-
-          <button className="w-full mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">
+          <button
+            onClick={handlePlaceOrder}
+            className="w-full mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+          >
             Place Order
           </button>
+
+          {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
         </div>
       </div>
     </div>
