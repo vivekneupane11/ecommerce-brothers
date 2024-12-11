@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { AiOutlineHeart, AiOutlineEye } from "react-icons/ai";
+import { AiOutlineHeart, AiOutlineDelete } from "react-icons/ai"; // Import the delete icon
 import { FaStar } from "react-icons/fa";
 import { FaStarHalfAlt } from "react-icons/fa";
 import { useNavigate } from "react-router";
 import { useInView } from "react-intersection-observer";
+import { addToWishlist, removeFromWishlist } from "../../../redux/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const ProductCard = ({ product }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -12,6 +14,11 @@ const ProductCard = ({ product }) => {
     threshold: 0.1,
   });
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const wishlistItems = useSelector((state) => state.wishlist.items);
+
+  // Check if the product is already in the wishlist
+  const isInWishlist = wishlistItems.some((item) => item.id === product.id);
 
   useEffect(() => {
     if (inView) {
@@ -21,6 +28,14 @@ const ProductCard = ({ product }) => {
 
   const handleViewDetails = () => {
     navigate(`/product/${product.id}`);
+  };
+
+  const handleWishlistClick = () => {
+    if (isInWishlist) {
+      dispatch(removeFromWishlist({ id: product.id }));
+    } else {
+      dispatch(addToWishlist(product));
+    }
   };
 
   return (
@@ -49,11 +64,16 @@ const ProductCard = ({ product }) => {
           />
           {/* Favorite and View Icons */}
           <div className="absolute top-2 right-2 flex flex-col gap-2">
-            <button className="p-2 bg-white rounded-full hover:text-red-500">
-              <AiOutlineHeart className="text-black-500 text-lg" />
-            </button>
-            <button className="p-2 bg-white rounded-full hover:text-red-500">
-              <AiOutlineEye className="text-black-500 text-lg" />
+            <button
+              onClick={handleWishlistClick}
+              className="p-2 bg-white rounded-full hover:text-red-500"
+            >
+              {/* Conditionally render heart or delete icon */}
+              {isInWishlist ? (
+                <AiOutlineDelete className="text-red-500 text-lg" />
+              ) : (
+                <AiOutlineHeart className="text-black-500 text-lg" />
+              )}
             </button>
           </div>
           {/* Add to Cart Button */}

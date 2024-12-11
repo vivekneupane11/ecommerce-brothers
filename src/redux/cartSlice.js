@@ -1,14 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
+const initialCartState = {
   items: [],
   totalQuantity: 0,
   totalAmount: 0,
 };
 
+const initialWishlistState = {
+  items: [],
+};
+
 const cartSlice = createSlice({
   name: "cart",
-  initialState,
+  initialState: initialCartState,
   reducers: {
     addToCart(state, action) {
       const newItem = action.payload;
@@ -72,7 +76,29 @@ const cartSlice = createSlice({
   },
 });
 
+const wishlistSlice = createSlice({
+  name: "wishlist",
+  initialState: initialWishlistState,
+  reducers: {
+    addToWishlist(state, action) {
+      const newItem = action.payload;
+      const existingItem = state.items.find((item) => item.id === newItem.id);
+
+      if (!existingItem) {
+        state.items.push(newItem);
+      }
+    },
+    removeFromWishlist(state, action) {
+      const { id } = action.payload;
+      state.items = state.items.filter((item) => item.id !== id);
+    },
+  },
+});
+
 export const { addToCart, removeFromCart, updateQuantity, clearCart } =
   cartSlice.actions;
 
-export default cartSlice.reducer;
+export const { addToWishlist, removeFromWishlist } = wishlistSlice.actions;
+
+export const cartReducer = cartSlice.reducer;
+export const wishlistReducer = wishlistSlice.reducer;

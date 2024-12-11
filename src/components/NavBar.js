@@ -16,20 +16,22 @@ const Navbar = () => {
   const { currentUser } = useContext(FirebaseContext);
   const navigate = useNavigate();
 
-  // Access the number of unique items from Redux
   const numberOfItems = useSelector((state) => state.cart.items.length);
+  const wishlistItems = useSelector((state) => state.wishlist.items.length);
 
   const handleClick = () => {
     navigate("/cart");
   };
 
+  const handleWishlistClick = () => {
+    navigate("/wishlist");
+  };
+
   return (
     <nav className="px-2 py-4 mx-4 lg:mx-24 bg-white">
       <div className="flex justify-between items-center">
-        {/* Logo */}
         <div className="text-3xl font-bold">Exclusive</div>
 
-        {/* Hamburger Icon for Small Screens */}
         <div className="md:hidden">
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -39,7 +41,6 @@ const Navbar = () => {
           </button>
         </div>
 
-        {/* Desktop Navigation Links */}
         <ul className="hidden md:flex space-x-6 text-sm font-medium">
           <Link to="/home" className="hover:underline cursor-pointer">
             Home
@@ -55,7 +56,6 @@ const Navbar = () => {
           </Link>
         </ul>
 
-        {/* Search and Icons */}
         <div className="hidden md:flex items-center space-x-4">
           <div className="flex items-center border px-3 py-1 gap-2 rounded-md shadow-sm">
             <input
@@ -66,17 +66,24 @@ const Navbar = () => {
             <FaSearch className="text-gray-500" size={16} />
           </div>
 
-          <FaRegHeart
-            className="text-gray-700 hover:text-red-500 cursor-pointer"
-            size={20}
-          />
+          <div className="relative">
+            <FaRegHeart
+              onClick={handleWishlistClick}
+              className="text-gray-700 hover:text-red-500 cursor-pointer"
+              size={20}
+            />
+            {wishlistItems > 0 && (
+              <span className="absolute left-3 -top-3 bg-red-500 text-white rounded-full px-1 text-xs">
+                {wishlistItems}
+              </span>
+            )}
+          </div>
           <div className="relative">
             <HiOutlineShoppingCart
               onClick={handleClick}
               className="text-gray-700 hover:text-green-500 cursor-pointer"
               size={20}
             />
-
             {numberOfItems > 0 && (
               <span className="absolute left-3 -top-3 bg-red-500 text-white rounded-full px-1 text-xs">
                 {numberOfItems}
@@ -94,7 +101,6 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       {isMenuOpen && (
         <ul className="md:hidden flex flex-col mt-8 text-sm font-semibold border-t-2">
           <Link

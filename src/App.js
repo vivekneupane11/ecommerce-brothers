@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router";
 import Loader from "./components/HomePageComp/FlashSalesComp/Loader";
 import CartPage from "./pages/cartPage";
 import CheckoutPage from "./pages/checkoutPage";
+import Wishlist from "./pages/WishList";
 const Home = React.lazy(() => import("./pages/Home"));
 const Contact = React.lazy(() => import("./pages/Contact"));
 const SignUp = React.lazy(() => import("./pages/SignUp"));
@@ -33,6 +34,7 @@ const App = () => {
           <Route path="/product/:id" element={<ProductDetails />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/checkout" element={<CheckoutPage />} />
+          <Route path="/wishlist" element={<Wishlist />} />
           <Route
             path="/account"
             element={
