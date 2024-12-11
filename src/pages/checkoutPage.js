@@ -168,6 +168,7 @@ const CheckoutPage = () => {
                 className="flex justify-between text-sm border-b pb-2 mb-2"
               >
                 <img src={item.image} className="h-[52px] w-[52px]" />
+                <span>{item.size}</span>
                 <span>{item.title}</span>
                 <span>${(item.quantity * item.price).toFixed(2)}</span>
               </div>

@@ -13,6 +13,8 @@ import {
   query,
   where,
   serverTimestamp,
+  doc,
+  deleteDoc,
 } from "firebase/firestore";
 import { createContext, useEffect, useState } from "react";
 import { auth, fireDB } from "./../firebase/firebase";
@@ -96,6 +98,14 @@ export const FirebaseProvider = ({ children }) => {
     return orders;
   };
 
+  const removeOrder = async (orderId) => {
+    if (!currentUser)
+      throw new Error("User must be logged in to remove an order");
+
+    const orderRef = doc(fireDB, "orders", orderId);
+    await deleteDoc(orderRef);
+  };
+
   const value = {
     currentUser,
     signup,
@@ -103,8 +113,9 @@ export const FirebaseProvider = ({ children }) => {
     logout,
     signInWithGoogle,
     loading,
-    placeOrder, // Expose order functions
+    placeOrder,
     fetchOrders,
+    removeOrder,
   };
 
   return (

@@ -2,7 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { FirebaseContext } from "../context/FirebaseProvider";
 
 const Account = () => {
-  const { currentUser, logout, fetchOrders } = useContext(FirebaseContext);
+  const { currentUser, logout, fetchOrders, removeOrder } =
+    useContext(FirebaseContext);
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -33,8 +34,20 @@ const Account = () => {
     }
   };
 
+  const handleRemoveOrder = async (orderId) => {
+    try {
+      await removeOrder(orderId);
+      setOrders((prevOrders) =>
+        prevOrders.filter((order) => order.id !== orderId)
+      );
+    } catch (error) {
+      console.error("Error removing order:", error);
+      setError("Failed to remove order. Please try again.");
+    }
+  };
+
   return (
-    <div className="p-6">
+    <div className="p-6 max-w-4xl mx-auto">
       <h2 className="text-2xl font-bold">My Account</h2>
 
       {/* User Information */}
@@ -49,7 +62,7 @@ const Account = () => {
 
       <button
         onClick={handleLogout}
-        className="mt-4 p-2 bg-red-500 text-white rounded"
+        className="mt-4 p-2 bg-red-500 text-white rounded hover:bg-red-600"
       >
         Logout
       </button>
@@ -64,9 +77,12 @@ const Account = () => {
         ) : orders.length === 0 ? (
           <p>No orders found.</p>
         ) : (
-          <div className="mt-4">
+          <div className="mt-4 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {orders.map((order) => (
-              <div key={order.id} className="p-4 border rounded mb-4 shadow-sm">
+              <div
+                key={order.id}
+                className="p-4 border rounded shadow-sm bg-white flex flex-col gap-2"
+              >
                 <p>
                   <strong>Order ID:</strong> {order.id}
                 </p>
@@ -83,13 +99,30 @@ const Account = () => {
                 <p>
                   <strong>Items:</strong>
                 </p>
-                <ul className="list-disc ml-5">
+                <ul className="flex flex-col gap-2">
                   {order.items.map((item, index) => (
-                    <li key={index}>
-                      {item.title} - ${item.price} x {item.quantity}
+                    <li className="flex gap-4 items-center" key={index}>
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        className="w-10 h-10 object-cover"
+                      />
+                      <div>
+                        <p>{item.title}</p>
+                        <p>
+                          {item.size} - ${item.price.toFixed(2)} x{" "}
+                          {item.quantity}
+                        </p>
+                      </div>
                     </li>
                   ))}
                 </ul>
+                <button
+                  onClick={() => handleRemoveOrder(order.id)}
+                  className="mt-4 p-2 bg-red-500 text-white rounded hover:bg-red-600"
+                >
+                  Remove Order
+                </button>
               </div>
             ))}
           </div>
