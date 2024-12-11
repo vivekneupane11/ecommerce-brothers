@@ -1,14 +1,15 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+  apiKey: "AIzaSyB6OGp3tJt6_8FKgbUbYAcZkMo0UgQOzmk",
+  authDomain: "brothers-repair-ce7ad.firebaseapp.com",
+  projectId: "brothers-repair-ce7ad",
+  storageBucket: "brothers-repair-ce7ad.firebasestorage.app",
+  messagingSenderId: "484381980891",
+  appId: "1:484381980891:web:cbdcfa328726c42468f4fe",
+  measurementId: "G-4LG956KVDR"
 };
 
 // Initialize Firebase

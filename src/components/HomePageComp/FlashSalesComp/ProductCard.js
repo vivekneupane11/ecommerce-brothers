@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { AiOutlineHeart, AiOutlineDelete } from "react-icons/ai"; // Import the delete icon
-import { FaStar } from "react-icons/fa";
-import { FaStarHalfAlt } from "react-icons/fa";
-import { useNavigate } from "react-router";
+import { AiOutlineDelete, AiOutlineHeart } from "react-icons/ai"; // Import the delete icon
+import { FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { useInView } from "react-intersection-observer";
-import { addToWishlist, removeFromWishlist } from "../../../redux/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
+import { addToWishlist, removeFromWishlist } from "../../../redux/cartSlice";
 
 const ProductCard = ({ product }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -54,12 +53,12 @@ const ProductCard = ({ product }) => {
           </div>
         )}
         {/* Image Section */}
-        <div className="p-8">
+        <div className="p-1">
           <img
             ref={ref} // Hook the image element to the inView observer
             src={isVisible ? product.image : ""}
             alt={product.title}
-            className="w-full h-40 object-contain"
+            className="w-full h-40 object-cover"
             loading="lazy"
           />
           {/* Favorite and View Icons */}
