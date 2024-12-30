@@ -10,7 +10,6 @@ import {
   FaTimes,
   FaUserCircle
 } from "react-icons/fa";
-import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router";
 import { FirebaseContext } from "../context/FirebaseProvider";
 
@@ -20,16 +19,7 @@ const Navbar = () => {
   const { currentUser } = useContext(FirebaseContext);
   const navigate = useNavigate();
 
-  const numberOfItems = useSelector((state) => state.cart.items.length);
-  const wishlistItems = useSelector((state) => state.wishlist.items.length);
 
-  const handleClick = () => {
-    navigate("/cart");
-  };
-
-  const handleWishlistClick = () => {
-    navigate("/wishlist");
-  };
 
   const menuItems = {
     phones: [

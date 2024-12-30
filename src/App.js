@@ -7,9 +7,7 @@ import CheckoutPage from "./pages/checkoutPage";
 import Wishlist from "./pages/WishList";
 const Home = React.lazy(() => import("./pages/Home"));
 const Contact = React.lazy(() => import("./pages/Contact"));
-const SignUp = React.lazy(() => import("./pages/SignUp"));
 const About = React.lazy(() => import("./pages/About"));
-const Login = React.lazy(() => import("./pages/Login"));
 const PrivateRoute = React.lazy(() => import("./components/PrivateRoute"));
 const Account = React.lazy(() => import("./pages/Account"));
 const AllProduct = React.lazy(() =>

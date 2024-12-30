@@ -140,10 +140,10 @@ const Footer = () => {
           <div>
             <h3 className="text-xl font-bold mb-4 text-white">Quick Links</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="hover:text-lime-500 transition-colors">Home</a></li>
-              <li><a href="#" className="hover:text-lime-500 transition-colors">About Us</a></li>
-              <li><a href="#" className="hover:text-lime-500 transition-colors">Services</a></li>
-              <li><a href="#" className="hover:text-lime-500 transition-colors">Contact</a></li>
+              <li><a href="/" className="hover:text-lime-500 transition-colors">Home</a></li>
+              <li><a href="/" className="hover:text-lime-500 transition-colors">About Us</a></li>
+              <li><a href="/" className="hover:text-lime-500 transition-colors">Services</a></li>
+              <li><a href="/" className="hover:text-lime-500 transition-colors">Contact</a></li>
             </ul>
           </div>
 
@@ -192,9 +192,9 @@ const Footer = () => {
         <div className="mt-12 pt-8 border-t border-gray-800">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex space-x-6 mb-4 md:mb-0">
-              <a href="#" className="text-2xl hover:text-lime-500 transition-colors"><FaFacebook /></a>
-              <a href="#" className="text-2xl hover:text-lime-500 transition-colors"><FaTwitter /></a>
-              <a href="#" className="text-2xl hover:text-lime-500 transition-colors"><FaInstagram /></a>
+              <a href="https://facebook.com" className="text-2xl hover:text-lime-500 transition-colors"><FaFacebook /></a>
+              <a href="https://twitter.com" className="text-2xl hover:text-lime-500 transition-colors"><FaTwitter /></a>
+              <a href="https://instagram.com" className="text-2xl hover:text-lime-500 transition-colors"><FaInstagram /></a>
             </div>
             <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-4">
               <div className="flex items-center space-x-2">
