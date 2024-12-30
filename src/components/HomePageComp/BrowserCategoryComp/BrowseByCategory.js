@@ -1,16 +1,17 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { BiCategory } from "react-icons/bi";
+import { BsSmartwatch } from "react-icons/bs";
 import {
   FaArrowLeft,
   FaArrowRight,
+  FaBatteryFull,
   FaCamera,
   FaDesktop,
   FaGamepad,
   FaHeadphones,
+  FaMobile,
   FaMobileAlt,
 } from "react-icons/fa";
-import { GiClothes } from "react-icons/gi";
-import { BiCategory, BiHome } from "react-icons/bi";
-import { BsSmartwatch } from "react-icons/bs";
 import ProductCard from "../FlashSalesComp/ProductCard";
 
 const categories = [
@@ -20,8 +21,8 @@ const categories = [
   { name: "Cameras", icon: <FaCamera /> },
   { name: "HeadPhones", icon: <FaHeadphones /> },
   { name: "Gaming", icon: <FaGamepad /> },
-  { name: "Clothes", icon: <GiClothes /> },
-  { name: "Furniture", icon: <BiHome /> },
+  { name: "Battery", icon: <FaBatteryFull /> },
+  { name: "Screens", icon: <FaMobile /> },
   { name: "Others", icon: <BiCategory /> },
 ];
 

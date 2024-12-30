@@ -1,51 +1,64 @@
 import React from "react";
-import psimage from "../../../assets/ps5.png";
-import womenimage from "../../../assets/women.png";
-import speakers from "../../../assets/speaker1.png";
-import perfumeimage from "../../../assets/perfume.png";
 
 const NewArrival = () => {
   return (
-    <div className="mt-8 lg:mx-24">
-      <div className="flex flex-col items-start ml-5">
-        <div className="flex gap-3">
-          <div className="bg-red-500 text-red-500 text-sm font-semibold px-1 py-1 rounded-md inline-block">
-            a
-          </div>
-          <h1 className="text-red-500 font-semibold">Featured</h1>
-        </div>
-        <h1 className="text-3xl font-bold mt-2 text-center sm:text-left">
-          New Arrival
-        </h1>
+    <div className="my-24 lg:mx-24">
+      <div className="text-center mb-12">
+        <h2 className="text-3xl font-bold text-gray-800">Professional Mobile Device Repair Services</h2>
+        <p className="mt-4 text-gray-600 max-w-3xl mx-auto px-4">
+          Expert technicians providing quality repairs for all major mobile device brands
+        </p>
       </div>
 
-      <div className="m-5 flex flex-col gap-3 lg:flex-row">
-        <img
-          src={psimage}
-          alt="playstation"
-          className="h-[400px] md:h-[500px] lg:w-[570px] lg:h-[600px] object-fill"
-          loading="lazy"
-        />
+      <div className="m-5 flex flex-col gap-8 lg:flex-row">
+        <div className="lg:w-1/2 pr-8">
+          <h2 className="text-2xl font-bold text-gray-800 mb-4">Quality Mobile Repairs at Affordable Pricing</h2>
+          
+          <p className="text-gray-600 mb-6 leading-relaxed">
+            There is no denying that our mobile devices are an integral part of everyday life – and that life as usual is disrupted when any of our devices has a problem. At Cheap Mobile Repair, we can help you keep your devices working in the best condition possible.
+          </p>
 
-        <div className="flex flex-col gap-3">
+          <p className="text-gray-600 mb-6 leading-relaxed">
+            We are known as a one-stop-shop for addressing all mobile device needs for servicing, repairs and replacements. We can work with most leading brands, including:
+          </p>
+
+          <ul className="grid grid-cols-2 gap-2 mb-6 text-gray-600">
+            <li>• iPhone</li>
+            <li>• Samsung</li>
+            <li>• Motorola</li>
+            <li>• Sony</li>
+            <li>• Nokia</li>
+            <li>• HTC</li>
+            <li>• OnePlus</li>
+            <li>• Xiaomi</li>
+            <li>• Oppo</li>
+            <li>• LG</li>
+          </ul>
+
+          <button className="bg-red-500 text-white px-6 py-2 rounded-md hover:bg-red-600 transition-colors">
+            Read More
+          </button>
+        </div>
+
+        <div className="lg:w-1/2 flex flex-col gap-3">
           <img
-            src={womenimage}
-            alt="women"
-            className="h-[400px] md:h-[500px] lg:w-[570px] lg:h-[302px] object-fill"
+            src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80"
+            alt="Professional phone repair service"
+            className="h-[400px] w-full object-cover rounded-lg shadow-lg"
             loading="lazy"
           />
 
-          <div className="flex flex-col lg:flex-row gap-3 sm:flex-row">
+          <div className="flex flex-col sm:flex-row gap-3">
             <img
-              src={speakers}
-              alt="speaker"
-              className="h-[400px] md:h-[500px] lg:w-[270px] lg:h-[284px] object-fill"
+              src="https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80"
+              alt="Mobile repair technician at work" 
+              className="h-[200px] flex-1 object-cover rounded-lg shadow-lg"
               loading="lazy"
             />
             <img
-              src={perfumeimage}
-              alt="perfume"
-              className="h-[400px] md:h-[500px] lg:w-[270px] lg:h-[284px] object-fill"
+              src="https://images.unsplash.com/photo-1597740985671-2a8a3b80502e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1767&q=80"
+              alt="Advanced repair tools and equipment"
+              className="h-[200px] flex-1 object-cover rounded-lg shadow-lg"
               loading="lazy"
             />
           </div>
