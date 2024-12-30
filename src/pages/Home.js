@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import React, { Suspense, useState } from "react";
-import { FaBatteryFull, FaBolt, FaDatabase, FaEnvelope, FaFacebook, FaInstagram, FaLaptop, FaMicrochip, FaMobile, FaPhone, FaTablet, FaTwitter, FaWater } from "react-icons/fa";
+import { FaBatteryFull, FaBolt, FaDatabase, FaEnvelope, FaFacebook, FaInstagram, FaLaptop, FaMicrochip, FaMobile, FaPhone, FaTablet, FaTwitter, FaWater, FaWhatsapp } from "react-icons/fa";
 import Loader from "../components/HomePageComp/FlashSalesComp/Loader";
 
 import PromoPage from "./../components/HomePageComp/PromoComp/PromoPage";
@@ -37,6 +37,40 @@ const scrollVariants = {
       ease: "easeOut"
     }
   }
+};
+
+const ScreenRepairBanner = () => {
+  return (
+    <div 
+      className="relative my-20 h-[500px] bg-cover bg-center bg-no-repeat mb-24"
+      style={{
+        backgroundImage: "url('/screens.jpg')"
+      }}
+    >
+      <div className="absolute inset-0 bg-black bg-opacity-60">
+        <div className="container mx-auto h-full flex flex-col justify-center items-center text-center px-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            We Fix Your Broken Screens
+          </h2>
+          <p className="text-xl text-gray-200 mb-8 max-w-2xl">
+            Screen replacement service with premium tempered
+             glass protection. 
+            
+          </p>
+          <a 
+            href="https://wa.me/+61426257977" 
+            className="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-full text-lg font-semibold transition-colors"
+          >
+            <FaWhatsapp className="text-2xl" />
+            Chat on WhatsApp
+          </a>
+          <p className="text-gray-300 mt-4">
+            Or call us directly at: +61426257977
+          </p>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 const FAQ = () => {
@@ -246,6 +280,17 @@ const Home = () => {
           variants={scrollVariants}
         >
           <BestSelling />
+        </motion.div>
+      </Suspense>
+
+      <Suspense fallback={<Loader />}>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={scrollVariants}
+        >
+          <ScreenRepairBanner />
         </motion.div>
       </Suspense>
 
