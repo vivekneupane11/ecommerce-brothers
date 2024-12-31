@@ -4,6 +4,7 @@ import Loader from "./components/HomePageComp/FlashSalesComp/Loader";
 import Navbar from "./components/NavBar";
 import CartPage from "./pages/cartPage";
 import CheckoutPage from "./pages/checkoutPage";
+import Service from "./pages/Service";
 import Wishlist from "./pages/WishList";
 const Home = React.lazy(() => import("./pages/Home"));
 const Contact = React.lazy(() => import("./pages/Contact"));
@@ -446,8 +447,8 @@ const App = () => {
           <Route path="/cart" element={<CartPage />} />
           <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="/wishlist" element={<Wishlist />} />
-          <Route
-            path="/account"
+          <Route path="/service/:id" element={<Service />} />
+          <Route path="/account"
             element={
               <PrivateRoute>
                 <Account />

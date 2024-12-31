@@ -19,56 +19,54 @@ const Navbar = () => {
   const { currentUser } = useContext(FirebaseContext);
   const navigate = useNavigate();
 
-
-
   const menuItems = {
     phones: [
-      "iPhone 14 Pro Max",
-      "iPhone 13",
-      "Samsung Galaxy S23", 
-      "Google Pixel 7",
-      "OnePlus 11",
-      "Xiaomi 13 Pro",
-      "Samsung Galaxy A54",
-      "iPhone 12",
-      "Samsung Galaxy Z Fold 4",
-      "Google Pixel 6a"
+      {id: "sr001", name: "iPhone 14 Pro Max"},
+      {id: "sr002", name: "iPhone 13"},
+      {id: "sr003", name: "Samsung Galaxy S23"},
+      {id: "sr004", name: "Google Pixel 7"},
+      {id: "sr005", name: "OnePlus 11"},
+      {id: "sr006", name: "Xiaomi 13 Pro"},
+      {id: "sr007", name: "Samsung Galaxy A54"},
+      {id: "sr008", name: "iPhone 12"},
+      {id: "sr009", name: "Samsung Galaxy Z Fold 4"},
+      {id: "sr010", name: "Google Pixel 6a"}
     ],
     ipads: [
-      "iPad Pro 12.9",
-      "iPad Air 5", 
-      "iPad mini 6",
-      "iPad 10th gen",
-      "iPad Pro 11",
-      "iPad Air 4",
-      "iPad 9th gen",
-      "iPad Pro 2021",
-      "iPad Air 3",
-      "iPad mini 5"
+      {id: "tr001", name: "iPad Pro 12.9"},
+      {id: "tr002", name: "iPad Air 5"},
+      {id: "tr003", name: "iPad mini 6"},
+      {id: "tr004", name: "iPad 10th gen"},
+      {id: "tr005", name: "iPad Pro 11"},
+      {id: "tr006", name: "iPad Air 4"},
+      {id: "tr007", name: "iPad 9th gen"},
+      {id: "tr008", name: "iPad Pro 2021"},
+      {id: "tr009", name: "iPad Air 3"},
+      {id: "tr010", name: "iPad mini 5"}
     ],
     laptops: [
-      "MacBook Pro 16",
-      "MacBook Air M2",
-      "Dell XPS 15",
-      "Lenovo ThinkPad X1",
-      "HP Spectre x360",
-      "ASUS ROG Zephyrus",
-      "Acer Swift 5",
-      "Microsoft Surface Laptop",
-      "Razer Blade 15",
-      "MSI GS66 Stealth"
+      {id: "lr001", name: "MacBook Pro 16"},
+      {id: "lr002", name: "MacBook Air M2"},
+      {id: "lr003", name: "Dell XPS 15"},
+      {id: "lr004", name: "Lenovo ThinkPad X1"},
+      {id: "lr005", name: "HP Spectre x360"},
+      {id: "lr006", name: "ASUS ROG Zephyrus"},
+      {id: "lr007", name: "Acer Swift 5"},
+      {id: "lr008", name: "Microsoft Surface Laptop"},
+      {id: "lr009", name: "Razer Blade 15"},
+      {id: "lr010", name: "MSI GS66 Stealth"}
     ],
     dataRecovery: [
-      "Hard Drive Recovery",
-      "SSD Data Recovery",
-      "iPhone Data Recovery",
-      "iPad Data Recovery", 
-      "Android Data Recovery",
-      "USB Drive Recovery",
-      "SD Card Recovery",
-      "RAID Recovery",
-      "Laptop Data Recovery",
-      "Water Damage Recovery"
+      {id: "dr001", name: "Hard Drive Recovery"},
+      {id: "dr002", name: "SSD Data Recovery"},
+      {id: "dr003", name: "iPhone Data Recovery"},
+      {id: "dr004", name: "iPad Data Recovery"},
+      {id: "dr005", name: "Android Data Recovery"},
+      {id: "dr006", name: "USB Drive Recovery"},
+      {id: "dr007", name: "SD Card Recovery"},
+      {id: "dr008", name: "RAID Recovery"},
+      {id: "dr009", name: "Laptop Data Recovery"},
+      {id: "dr010", name: "Water Damage Recovery"}
     ]
   };
 
@@ -96,8 +94,8 @@ const Navbar = () => {
             {activeSubmenu === 'phones' && (
               <div className="absolute top-full left-0 bg-white shadow-lg rounded-md p-4 w-64 z-50">
                 {menuItems.phones.map((phone) => (
-                  <Link key={phone} to="/" className="block py-2 px-4 hover:bg-gray-100 text-gray-800">
-                    {phone}
+                  <Link key={phone.id} to={`/service/${phone.id}`} className="block py-2 px-4 hover:bg-gray-100 text-gray-800">
+                    {phone.name}
                   </Link>
                 ))}
               </div>
@@ -113,8 +111,8 @@ const Navbar = () => {
             {activeSubmenu === 'ipads' && (
               <div className="absolute top-full left-1/4 bg-white shadow-lg rounded-md p-4 w-64 z-50">
                 {menuItems.ipads.map((ipad) => (
-                  <Link key={ipad} to="/" className="block py-2 px-4 hover:bg-gray-100 text-gray-800">
-                    {ipad}
+                  <Link key={ipad.id} to={`/service/${ipad.id}`} className="block py-2 px-4 hover:bg-gray-100 text-gray-800">
+                    {ipad.name}
                   </Link>
                 ))}
               </div>
@@ -130,8 +128,8 @@ const Navbar = () => {
             {activeSubmenu === 'laptops' && (
               <div className="absolute top-full left-2/4 bg-white shadow-lg rounded-md p-4 w-64 z-50">
                 {menuItems.laptops.map((laptop) => (
-                  <Link key={laptop} to="/" className="block py-2 px-4 hover:bg-gray-100 text-gray-800">
-                    {laptop}
+                  <Link key={laptop.id} to={`/service/${laptop.id}`} className="block py-2 px-4 hover:bg-gray-100 text-gray-800">
+                    {laptop.name}
                   </Link>
                 ))}
               </div>
@@ -147,8 +145,8 @@ const Navbar = () => {
             {activeSubmenu === 'dataRecovery' && (
               <div className="absolute top-full right-0 bg-white shadow-lg rounded-md p-4 w-64 z-50">
                 {menuItems.dataRecovery.map((service) => (
-                  <Link key={service} to="/" className="block py-2 px-4 hover:bg-gray-100 text-gray-800">
-                    {service}
+                  <Link key={service.id} to={`/service/${service.id}`} className="block py-2 px-4 hover:bg-gray-100 text-gray-800">
+                    {service.name}
                   </Link>
                 ))}
               </div>
@@ -187,8 +185,8 @@ const Navbar = () => {
               <FaMobile /> Mobile Phone Repairs
             </div>
             {menuItems.phones.map((phone) => (
-              <Link key={phone} to="/" className="block py-1 hover:text-gray-800 text-gray-800">
-                {phone}
+              <Link key={phone.id} to={`/service/${phone.id}`} className="block py-1 hover:text-gray-800 text-gray-800">
+                {phone.name}
               </Link>
             ))}
           </div>
@@ -198,8 +196,8 @@ const Navbar = () => {
               <FaTablet /> iPad Repairs
             </div>
             {menuItems.ipads.map((ipad) => (
-              <Link key={ipad} to="/" className="block py-1 hover:text-gray-800 text-gray-800">
-                {ipad}
+              <Link key={ipad.id} to={`/service/${ipad.id}`} className="block py-1 hover:text-gray-800 text-gray-800">
+                {ipad.name}
               </Link>
             ))}
           </div>
@@ -209,8 +207,8 @@ const Navbar = () => {
               <FaLaptop /> Laptop Repairs
             </div>
             {menuItems.laptops.map((laptop) => (
-              <Link key={laptop} to="/" className="block py-1 hover:text-gray-800 text-gray-800">
-                {laptop}
+              <Link key={laptop.id} to={`/service/${laptop.id}`} className="block py-1 hover:text-gray-800 text-gray-800">
+                {laptop.name}
               </Link>
             ))}
           </div>
@@ -220,8 +218,8 @@ const Navbar = () => {
               <FaDatabase /> Data Recovery
             </div>
             {menuItems.dataRecovery.map((service) => (
-              <Link key={service} to="/" className="block py-1 hover:text-gray-800 text-gray-800">
-                {service}
+              <Link key={service.id} to={`/service/${service.id}`} className="block py-1 hover:text-gray-800 text-gray-800">
+                {service.name}
               </Link>
             ))}
           </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import { FaTruck, FaHeadset, FaShieldAlt, FaArrowUp } from "react-icons/fa";
+import { FaArrowUp, FaHeadset, FaShieldAlt, FaTruck } from "react-icons/fa";
 
 const BottomComp = () => {
   const scrollToTop = () => {
@@ -16,7 +16,7 @@ const BottomComp = () => {
             </div>
             <h3 className="text-xl font-bold mt-4">FREE AND FAST DELIVERY</h3>
             <p className="text-gray-600">
-              Free delivery for all orders over $140
+              Free delivery for all orders
             </p>
           </div>
 

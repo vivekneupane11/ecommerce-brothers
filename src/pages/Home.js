@@ -73,6 +73,43 @@ const ScreenRepairBanner = () => {
   );
 };
 
+const FloatingWhatsApp = () => {
+  const [isHovered, setIsHovered] = useState(false);
+  
+  const handleWhatsAppClick = () => {
+    window.open('https://wa.me/+61426257977', '_blank');
+  };
+
+  return (
+    <div 
+      className="fixed bottom-8 right-8 z-50"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <AnimatePresence>
+        {isHovered && (
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 20 }}
+            className="absolute bottom-full right-0 mb-2 bg-white rounded-lg shadow-lg p-3 whitespace-nowrap"
+          >
+            <p className="text-gray-800 text-sm">Chat with us on WhatsApp!</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <button
+        onClick={handleWhatsAppClick}
+        className="bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition-colors duration-200 flex items-center justify-center"
+      >
+        <FaWhatsapp className="text-2xl" />
+      </button>
+    </div>
+  );
+};
+
+
 const FAQ = () => {
   const [activeIndex, setActiveIndex] = useState(null);
 
@@ -304,6 +341,9 @@ const Home = () => {
           <ProductsComp />
         </motion.div>
       </Suspense>
+
+   
+
       <Suspense fallback={<Loader />}>
         <motion.div
           initial="hidden"
@@ -348,6 +388,7 @@ const Home = () => {
         </motion.div>
       </Suspense>
       <Footer />
+      <FloatingWhatsApp />
     </div>
   );
 };
